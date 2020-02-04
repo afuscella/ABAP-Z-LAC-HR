@@ -12,7 +12,7 @@
     <item>/package.json</item>
     <item>/.travis.yml</item>
     <item>/.gitlab-ci.yml</item>
-    <item>/src/*.xml</item>
+    <item>/src/*abap*.xml</item>
     <item>/abaplint.json</item>
     <item>/azure-pipelines.yml</item>
    </IGNORE>
