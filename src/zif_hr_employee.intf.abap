@@ -8,7 +8,7 @@ interface ZIF_HR_EMPLOYEE
     returning
       value(RV_SALARY) type DMBTR
     raising
-      ZCX_MISSING_PARAMETER
+      ZCX_LAC_MISSING_PARAMETER
       ZCX_HR_MISSING_WORK_DAYS .
   methods DISPLAY_DATA
     importing
