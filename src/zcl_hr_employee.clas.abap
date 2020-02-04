@@ -1,24 +1,24 @@
-class ZCL_HR_EMPLOYEE definition
-  public
-  create public .
+CLASS zcl_hr_employee DEFINITION
+  PUBLIC
+  CREATE PUBLIC .
 
-public section.
+  PUBLIC SECTION.
 
-  interfaces ZIF_HR_EMPLOYEE .
+    INTERFACES zif_hr_employee .
 
-  methods CONSTRUCTOR
-    importing
-      !IO_DATE_WRAP type ref to ZIF_DATE_WRAP optional
-      !IO_POPUP_WRAP type ref to ZIF_POPUP_WRAP optional
-      !IO_TEXT_WRAP type ref to ZIF_TEXT_WRAP optional
-      !IO_ABAP_WRAP type ref to ZIF_ABAP_WRAP optional .
-protected section.
+    METHODS constructor
+      IMPORTING
+        !io_date_wrap  TYPE REF TO zif_lac_date_wrap OPTIONAL
+        !io_popup_wrap TYPE REF TO zif_popup_wrap OPTIONAL
+        !io_text_wrap  TYPE REF TO zif_lac_text_wrap OPTIONAL
+        !io_abap_wrap  TYPE REF TO zif_abap_wrap OPTIONAL .
+PROTECTED SECTION.
 
-  data MO_DATE_WRAP type ref to ZIF_DATE_WRAP .
-  data MO_POPUP_WRAP type ref to ZIF_POPUP_WRAP .
-  data MO_TEXT_WRAP type ref to ZIF_TEXT_WRAP .
-  data MO_ABAP_WRAP type ref to ZIF_ABAP_WRAP .
-  data MV_DAILY_PAYMENT type DMBTR value 250 ##NO_TEXT.
+  DATA mo_date_wrap TYPE REF TO zif_lac_date_wrap .
+  DATA mo_popup_wrap TYPE REF TO zif_popup_wrap .
+  DATA mo_text_wrap TYPE REF TO zif_lac_text_wrap .
+  DATA mo_abap_wrap TYPE REF TO zif_abap_wrap .
+  DATA mv_daily_payment TYPE dmbtr VALUE 250 ##NO_TEXT.
 private section.
 ENDCLASS.
 
@@ -32,7 +32,7 @@ CLASS ZCL_HR_EMPLOYEE IMPLEMENTATION.
     IF io_date_wrap IS BOUND.
       mo_date_wrap = io_date_wrap.
     ELSE.
-      CREATE OBJECT mo_date_wrap TYPE zcl_date_wrap.
+      CREATE OBJECT mo_date_wrap TYPE zcl_lac_date_wrap.
     ENDIF.
 
     IF io_popup_wrap IS BOUND.
@@ -44,7 +44,7 @@ CLASS ZCL_HR_EMPLOYEE IMPLEMENTATION.
     IF io_text_wrap IS BOUND.
       mo_text_wrap = io_text_wrap.
     ELSE.
-      CREATE OBJECT mo_text_wrap TYPE zcl_text_wrap.
+      CREATE OBJECT mo_text_wrap TYPE zcl_lac_text_wrap.
     ENDIF.
 
     IF io_abap_wrap IS BOUND.
@@ -65,9 +65,10 @@ CLASS ZCL_HR_EMPLOYEE IMPLEMENTATION.
 
         rv_salary = mv_daily_payment * iv_work_days.
 
-      CATCH zcx_missing_parameter.
-        RAISE EXCEPTION TYPE zcx_missing_parameter
+      CATCH zcx_lac_missing_parameter.
+        RAISE EXCEPTION TYPE zcx_lac_missing_parameter
           EXPORTING
+            textid   = zcx_lac_missing_parameter=>obrligatory_parameter_missing
             mv_param = 'IV_WORK_DAYS'.
     ENDTRY.
 

@@ -25,9 +25,10 @@ CLASS ZCL_HR_EMPLOYEE_EXTERNAL IMPLEMENTATION.
 
         rv_salary = ( mv_daily_payment * iv_work_days ) * '0.75'.
 
-      CATCH zcx_missing_parameter.
-        RAISE EXCEPTION TYPE zcx_missing_parameter
+      CATCH zcx_lac_missing_parameter.
+        RAISE EXCEPTION TYPE zcx_lac_missing_parameter
           EXPORTING
+            textid   = zcx_lac_missing_parameter=>obrligatory_parameter_missing
             mv_param = 'IV_WORK_DAYS'.
     ENDTRY.
 

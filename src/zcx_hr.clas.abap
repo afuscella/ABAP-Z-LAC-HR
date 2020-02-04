@@ -5,8 +5,6 @@ CLASS zcx_hr DEFINITION
 
   PUBLIC SECTION.
 
-    INTERFACES if_t100_message .
-
     METHODS constructor
       IMPORTING
         !textid   LIKE if_t100_message=>t100key OPTIONAL
