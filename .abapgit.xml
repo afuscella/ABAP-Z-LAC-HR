@@ -12,7 +12,6 @@
     <item>/package.json</item>
     <item>/.travis.yml</item>
     <item>/.gitlab-ci.yml</item>
-    <item>/*.xml</item>
     <item>/src/*.xml</item>
     <item>/abaplint.json</item>
     <item>/azure-pipelines.yml</item>
